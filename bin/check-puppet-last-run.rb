@@ -53,8 +53,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          description: 'Age in seconds to be a critical'
 
   def run
-
-    if !File.exists?(config[:summary_file])
+    unless File.exist?(config[:summary_file])
       unknown "File #{config[:summary_file]} not found"
     end
 
@@ -76,6 +75,5 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     else
       ok @message
     end
-
   end
 end

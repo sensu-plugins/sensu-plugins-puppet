@@ -14,42 +14,10 @@
 ## Files
 
 * /bin/checkpuppet-last-run.rb
+* /bin/metrics-puppet-run.rb
 
 ## Installation
 
-Add the public key (if you haven’t already) as a trusted certificate
-
-```
-gem cert --add <(curl -Ls https://raw.githubusercontent.com/sensu-plugins/sensu-plugins.github.io/master/certs/sensu-plugins.pem)
-gem install <gem> -P MediumSecurity
-```
-
-You can also download the key from /certs/ within each repository.
-
-#### Rubygems
-
-`gem install sensu-plugins-puppet`
-
-#### Bundler
-
-Add *sensu-plugins-puppet* to your Gemfile and run `bundle install` or `bundle update`
-
-#### Chef
-
-Using the Sensu **sensu_gem** LWRP
-```
-sensu_gem 'sensu-plugins-puppet' do
-  options('--prerelease')
-  version '0.1.0'
-end
-```
-
-Using the Chef **gem_package** resource
-```
-gem_package 'sensu-plugins-puppet' do
-  options('--prerelease')
-  version '0.1.0'
-end
-```
+[Installation and Setup](https://github.com/sensu-plugins/documentation/blob/master/user_docs/installation_instructions.md)
 
 ## Notes
