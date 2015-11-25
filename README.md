@@ -21,3 +21,5 @@
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
 ## Notes
+
+As the sensu user doesn't have read access to `/opt/puppetlabs/puppet/cache/state/last_run_summary.yaml` it is necessary to create an appropriate entry in `/etc/sudoers.d` and call `check-puppet-last-run.rb` or `metrics-puppet-run.rb` using `sudo`.
