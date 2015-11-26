@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.date                   = Date.today.to_s
   s.description            = 'This plugin provides native Puppet instrumentation
                               for monitoring and metrics collection for the last
-                              Puppet run'
+                              Puppet run.'
   s.email                  = '<sensu-users@googlegroups.com>'
   s.executables            = Dir.glob('bin/**/*.rb').map { |file| File.basename(file) }
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
