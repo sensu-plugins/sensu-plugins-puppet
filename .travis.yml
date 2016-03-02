@@ -1,18 +1,30 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
+- 1.9.3
+- 2.0
+- 2.1
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+deploy:
+  provider: rubygems
+  api_key:
+    secure: TXOkIloJ1D3Rdst9t/Rt4twhvVgUnnp2TSL1NR+G5BzUyTPvSlKBoIAvnye9CK5ZXPJFN5f8NozsUyP4Z9IJv1KQr3Jet2XS8oe3u21/S2KB3ugTPbirQkXYyATzg0cP49RIF1ak0QEm786r9CXFVvYk9JBvUtDy3LJMFLBRmbhyOuRJmRm8uLJ8+N9Dd6hw2YyN9gz3/B/YTYg9Ww3ZinNlY2Kwbq9sdQqg3NhnVddxpBd3lureVY2WxqOkyPIjg5cgSTRHomLJUFJxgncTVEvR3oYj3CTX12hKgfDHOeyyv/Go897cz/ouod0mPwrTBNhHSlhKsHot2Honeh/itNqh/Rrx/yEZ7pIWqZE9bhKhXTvwxpHfWdRduvX0631jUtuOLXOEddpFE0zdmdmqO96CqY8ad1ivt8UXxE6dmj3sHjIGvu0omrrA5cBmwDyLXQRAlU1LB/sGdJJk6gi19rRRYoPWdSqr+H0d8tnIWB71UhZm+7nwswM4XHVoljXCTnQVpFseat95I0qIYoDAQXR2bIwV7biWENto9gXfVhUwoX8gzhKqhSj1MeOyyVCpWf6cgVwwvkhPp1ISZKRird5AavbxEUDXRodPoLDp7rUXk2cvDKBgz2p88t4o7zxkXpSKwg5hfEeEU/8WNCdzWNnUDgV9zeRumHcqy5qoCbw=
+  gem: sensu-plugins-puppet
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-puppet
