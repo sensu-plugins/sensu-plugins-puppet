@@ -29,6 +29,7 @@
 
 require 'sensu-plugin/check/cli'
 require 'yaml'
+require 'json'
 require 'time'
 
 class PuppetLastRun < Sensu::Plugin::Check::CLI
@@ -52,6 +53,12 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          proc:        proc(&:to_i),
          description: 'Age in seconds to be a critical'
 
+  option :agent_disabled_file,
+         short:       '-a PATH',
+         long:        '--agent-disabled-file PATH',
+         default:     '/opt/puppetlabs/puppet/cache/state/agent_disabled.lock',
+         description: 'Path to agent disabled lock file'
+
   def run
     unless File.exist?(config[:summary_file])
       unknown "File #{config[:summary_file]} not found"
@@ -67,6 +74,13 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     end
 
     @message = "Puppet last run #{@now - @last_run} seconds ago"
+
+    begin
+      disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))["disabled_message"]
+      @message += " (disabled reason: #{disabled_message})"
+    rescue
+      # fail silently
+    end
 
     if @now - @last_run > config[:crit_age]
       critical @message
