@@ -76,7 +76,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     @message = "Puppet last run #{@now - @last_run} seconds ago"
 
     begin
-      disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))["disabled_message"]
+      disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
       @message += " (disabled reason: #{disabled_message})"
     rescue
       # fail silently
