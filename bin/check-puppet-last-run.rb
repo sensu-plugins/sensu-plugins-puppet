@@ -73,7 +73,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       unknown "Could not process #{config[:summary_file]}"
     end
 
-    @message = "Puppet last run #{@now - @last_run} seconds ago"
+    @message = "Puppet last run #{formatted_duration(@now - @last_run)} ago"
 
     begin
       disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
@@ -88,6 +88,20 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       warning @message
     else
       ok @message
+    end
+  end
+
+  def formatted_duration(total_seconds)
+    hours = total_seconds / (60 * 60)
+    minutes = (total_seconds / 60) % 60
+    seconds = total_seconds % 60
+
+    if hours <= 0 && minutes > 0
+      "#{minutes}m #{seconds}s"
+    elsif minutes <= 0
+      "#{seconds}s"
+    else
+      "#{hours}h #{minutes}m #{seconds}s"
     end
   end
 end
