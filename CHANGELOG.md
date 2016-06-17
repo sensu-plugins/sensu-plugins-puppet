@@ -5,12 +5,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Changed
-- Added a formatter method to display time in a more human
-friendly format. (d m s) ago
+- check-puppet-last-run.rb: Added a formatter method to display time in a more human friendly format. (d m s) ago
+- check-puppet-last-run.rb: if the agent is disabled via lock file, display reason (if available)
 
-## [0.0.3] - 2016-03-22
-### Added
-- display disabled reason if available
+### Removed
+- Remove Ruby 1.9.3 support; add Ruby 2.2.0 and 2.3.0 support to test matrix.
 
 ## [0.0.2] - 2015-07-14
 ### Changed
