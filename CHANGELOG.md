@@ -7,6 +7,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Changed
 - check-puppet-last-run.rb: Added a formatter method to display time in a more human friendly format. (d m s) ago
 - check-puppet-last-run.rb: if the agent is disabled via lock file, display reason (if available)
+- Loosened dependency on sensu-plugin from `= 1.2.0` to `~> 1.2.0`
+- Updated Rubocop to 0.40, applied auto-correct
 
 ### Removed
 - Remove Ruby 1.9.3 support; add Ruby 2.2.0 and 2.3.0 support to test matrix.
