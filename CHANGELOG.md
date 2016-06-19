@@ -9,6 +9,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - check-puppet-last-run.rb: if the agent is disabled via lock file, display reason (if available)
 - Loosened dependency on sensu-plugin from `= 1.2.0` to `~> 1.2.0`
 - Updated Rubocop to 0.40, applied auto-correct
+- Added a check for errors in the puppet run
 
 ### Removed
 - Remove Ruby 1.9.3 support; add Ruby 2.2.0 and 2.3.0 support to test matrix.
