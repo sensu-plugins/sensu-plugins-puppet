@@ -69,6 +69,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     begin
       summary = YAML.load_file(config[:summary_file])
       @last_run = summary['time']['last_run'].to_i
+      @failures = summary['events']['failures'].to_i
     rescue
       unknown "Could not process #{config[:summary_file]}"
     end
@@ -82,7 +83,11 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       # fail silently
     end
 
-    if @now - @last_run > config[:crit_age]
+    if @failures > 0
+        @message += " with #{@failures} failures"
+    end
+
+    if @now - @last_run > config[:crit_age] || @failures > 0
       critical @message
     elsif @now - @last_run > config[:warn_age]
       warning @message
