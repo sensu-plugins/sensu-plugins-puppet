@@ -84,7 +84,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     end
 
     if @failures > 0
-        @message += " with #{@failures} failures"
+      @message += " with #{@failures} failures"
     end
 
     if @now - @last_run > config[:crit_age] || @failures > 0
