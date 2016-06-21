@@ -4,12 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.0.0] - 2016-06-21
 ### Changed
 - check-puppet-last-run.rb: Added a formatter method to display time in a more human friendly format. (d m s) ago
 - check-puppet-last-run.rb: if the agent is disabled via lock file, display reason (if available)
 - Loosened dependency on sensu-plugin from `= 1.2.0` to `~> 1.2.0`
 - Updated Rubocop to 0.40, applied auto-correct
-- Added a check for errors in the puppet run
+- check-puppet-last-run.rb: now returns critical when errors are found in the puppet run
 
 ### Removed
 - Remove Ruby 1.9.3 support; add Ruby 2.2.0 and 2.3.0 support to test matrix.
@@ -22,5 +24,6 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/0.0.2...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/0.0.1...0.0.2
