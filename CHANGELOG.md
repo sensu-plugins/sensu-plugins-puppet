@@ -5,7 +5,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Changed
-- check-puppet-last-run.rb: Added critical alrting on filures during summary file processing
+- check-puppet-last-run.rb: Added critical alrting on failures during summary file processing
 
 ## [1.0.0] - 2016-06-21
 ### Changed
