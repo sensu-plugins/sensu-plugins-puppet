@@ -68,8 +68,16 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
 
     begin
       summary = YAML.load_file(config[:summary_file])
-      @last_run = summary['time']['last_run'].to_i
-      @failures = summary['events']['failures'].to_i
+      if summary['time']
+        @last_run = summary['time']['last_run'].to_i
+      else
+        critical "#{config[:summary_file]} is missing information about the last run timestamp"
+      end
+      if summary['events']
+        @failures = summary['events']['failures'].to_i
+      else
+        critical "#{config[:summary_file]} is missing information about the events"
+      end
     rescue
       unknown "Could not process #{config[:summary_file]}"
     end
