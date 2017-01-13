@@ -74,7 +74,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
         critical "#{config[:summary_file]} is missing information about the last run timestamp"
       end
       if summary['events']
-        @failures = summary['events']['failures'].to_i
+        @failures = summary['events']['failure'].to_i
       else
         critical "#{config[:summary_file]} is missing information about the events"
       end
