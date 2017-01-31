@@ -4,9 +4,13 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-### Changed
-- check-puppet-last-run.rb: Added critical alerting on failures during summary file processing
-- check-puppet-last-run.rb: Corrected failure count hash key
+
+## [1.1.0] - 2017-01-30
+### Added
+- `check-puppet-last-run.rb`: Added critical alerting on failures during summary file processing (@grem11n)
+
+### Fixed
+- `check-puppet-last-run.rb`: Corrected failure count hash key (@eahola)
 
 ## [1.0.0] - 2016-06-21
 ### Changed
@@ -27,6 +31,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/0.0.2...1.0.0
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/0.0.1...0.0.2
