@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- `check-puppet-last-run.rb`: Added option for reporting failed restarts (@antonidabek)
 
 ## [1.1.0] - 2017-01-30
 ### Added
