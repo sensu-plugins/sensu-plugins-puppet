@@ -21,6 +21,11 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 - `check-puppet-errors.rb`: Added check for Puppet failures (@grem11n)
 - `check-puppet-last-run.rb`: Added option for ignoring Puppet failure (@grem11n)
 
+# [Unreleased]
+### Added
+- Added options to allow for different age limits when the agent is disabled
+- Added a switch to use the new limits so as not to impact current functionality
+
 ## [1.2.0] - 2017-05-30
 ### Added
 - `check-puppet-last-run.rb`: Added option for reporting failed restarts (@antonidabek)
