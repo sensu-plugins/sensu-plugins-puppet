@@ -59,6 +59,27 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          default:     '/opt/puppetlabs/puppet/cache/state/agent_disabled.lock',
          description: 'Path to agent disabled lock file'
 
+  option :disabled_age_limits,
+         short:       '-d',
+         long:        '--disabled-age-limits',
+         boolean:     true,
+         default:     false,
+         description: 'Consider disabled age limits, otherwise use main limits'
+
+  option :warn_age_disabled,
+         short:       '-W N',
+         long:        '--warn-age-disabled SECONDS',
+         default:     3600,
+         proc:        proc(&:to_i),
+         description: 'Age in seconds to warn when agent is disabled'
+
+  option :crit_age_disabled,
+         short:       '-C N',
+         long:        '--crit-age-disabled SECONDS',
+         default:     7200,
+         proc:        proc(&:to_i),
+         description: 'Age in seconds to crit when agent is disabled'
+
   option :report_restart_failures,
          short:       '-r',
          long:        '--report-restart-failures',
@@ -109,6 +130,16 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
 
     if @restart_failures > 0
       @message += " with #{@restart_failures} restart failures"
+    end
+
+    if config[:disabled_age_limits] && File.exist?(config[:agent_disabled_file])
+      if @now - @last_run > config[:crit_age_disabled]
+        critical @message
+      elsif @now - @last_run > config[:warn_age_disabled]
+        warning @message
+      else
+        ok @message
+      end
     end
 
     if @now - @last_run > config[:crit_age] || @failures > 0 || @restart_failures > 0

@@ -7,6 +7,11 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - Testing for Ruby 2.4.1
 
+# [Unreleased]
+### Added
+- Added options to allow for different age limits when the agent is disabled
+- Added a switch to use the new limits so as not to impact current functionality
+
 ## [1.2.0] - 2017-05-30
 ### Added
 - `check-puppet-last-run.rb`: Added option for reporting failed restarts (@antonidabek)
