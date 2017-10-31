@@ -66,6 +66,13 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          default:     false,
          description: 'Raise alerts if restart failures have happened'
 
+  option :ignore_failures,
+         short:       '-i',
+         long:        '--ignore-failures',
+         boolean:     true,
+         default:     false,
+         description: 'Ignore Puppet failures'
+
   def run
     unless File.exist?(config[:summary_file])
       unknown "File #{config[:summary_file]} not found"
@@ -80,16 +87,18 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       else
         critical "#{config[:summary_file]} is missing information about the last run timestamp"
       end
-      if summary['events']
-        @failures = summary['events']['failure'].to_i
-      else
-        critical "#{config[:summary_file]} is missing information about the events"
+      unless config[:ignore_failures]
+        if summary['events']
+          @failures = summary['events']['failure'].to_i
+        else
+          critical "#{config[:summary_file]} is missing information about the events"
+        end
+        @restart_failures = if config[:report_restart_failures] && summary['resources']
+                              summary['resources']['failed_to_restart'].to_i
+                            else
+                              0
+                            end
       end
-      @restart_failures = if config[:report_restart_failures] && summary['resources']
-                            summary['resources']['failed_to_restart'].to_i
-                          else
-                            0
-                          end
     rescue
       unknown "Could not process #{config[:summary_file]}"
     end
