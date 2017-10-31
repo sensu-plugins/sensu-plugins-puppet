@@ -32,12 +32,18 @@ require 'yaml'
 require 'json'
 require 'time'
 
-class PuppetLastRun < Sensu::Plugin::Check::CLI
+class PuppetErros < Sensu::Plugin::Check::CLI
   option :summary_file,
          short:       '-s PATH',
          long:        '--summary-file PATH',
          default:     '/opt/puppetlabs/puppet/cache/state/last_run_summary.yaml',
          description: 'Location of last_run_summary.yaml file'
+
+  option :agent_disabled_file,
+         short:       '-a PATH',
+         long:        '--agent-disabled-file PATH',
+         default:     '/opt/puppetlabs/puppet/cache/state/agent_disabled.lock',
+         description: 'Path to agent disabled lock file'
 
   def run
     unless File.exist?(config[:summary_file])
@@ -57,8 +63,15 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
 
     @message = 'Puppet run'
 
+    begin
+      disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
+      @message += " (disabled reason: #{disabled_message})"
+    rescue # rubocop:disable HandleExceptions
+      # fail silently
+    end
+
     if @failures > 0
-      @message += " had #{failures} failures"
+      @message += " had #{@failures} failures"
       critical @message
     else
       @message += ' was successful'
