@@ -59,6 +59,13 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          default:     '/opt/puppetlabs/puppet/cache/state/agent_disabled.lock',
          description: 'Path to agent disabled lock file'
 
+  option :report_restart_failures,
+         short:       '-r',
+         long:        '--report-restart-failures',
+         boolean:     true,
+         default:     false,
+         description: 'Raise alerts if restart failures have happened'
+
   def run
     unless File.exist?(config[:summary_file])
       unknown "File #{config[:summary_file]} not found"
@@ -74,10 +81,15 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
         critical "#{config[:summary_file]} is missing information about the last run timestamp"
       end
       if summary['events']
-        @failures = summary['events']['failures'].to_i
+        @failures = summary['events']['failure'].to_i
       else
         critical "#{config[:summary_file]} is missing information about the events"
       end
+      @restart_failures = if config[:report_restart_failures] && summary['resources']
+                            summary['resources']['failed_to_restart'].to_i
+                          else
+                            0
+                          end
     rescue
       unknown "Could not process #{config[:summary_file]}"
     end
@@ -95,7 +107,11 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       @message += " with #{@failures} failures"
     end
 
-    if @now - @last_run > config[:crit_age] || @failures > 0
+    if @restart_failures > 0
+      @message += " with #{@restart_failures} restart failures"
+    end
+
+    if @now - @last_run > config[:crit_age] || @failures > 0 || @restart_failures > 0
       critical @message
     elsif @now - @last_run > config[:warn_age]
       warning @message
