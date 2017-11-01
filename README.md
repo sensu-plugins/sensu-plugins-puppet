@@ -11,6 +11,8 @@
 **check-puppet-last-run.rb**
 **check-puppet-errors.rb**
 
+**check-puppet-errors.rb**
+
 ## Files
 
 * /bin/checkpuppet-last-run.rb
