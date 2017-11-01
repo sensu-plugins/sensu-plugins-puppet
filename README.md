@@ -9,11 +9,13 @@
 ## Functionality
 
 **check-puppet-last-run.rb**
+**check-puppet-errors.rb**
 
 ## Files
 
 * /bin/checkpuppet-last-run.rb
 * /bin/metrics-puppet-run.rb
+* /bin/check-puppet-errors.rb
 
 ## Installation
 
