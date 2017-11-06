@@ -32,7 +32,7 @@ require 'yaml'
 require 'json'
 require 'time'
 
-class PuppetErros < Sensu::Plugin::Check::CLI
+class PuppetErrors < Sensu::Plugin::Check::CLI
   option :summary_file,
          short:       '-s PATH',
          long:        '--summary-file PATH',
@@ -66,8 +66,8 @@ class PuppetErros < Sensu::Plugin::Check::CLI
     begin
       disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
       @message += " (disabled reason: #{disabled_message})"
-    rescue # rubocop:disable HandleExceptions
-      # fail silently
+    rescue => e
+      unknown "Could not get disabled message. Reason: #{e.message}"
     end
 
     if @failures > 0
