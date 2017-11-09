@@ -63,11 +63,13 @@ class PuppetErrors < Sensu::Plugin::Check::CLI
 
     @message = 'Puppet run'
 
-    begin
-      disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
-      @message += " (disabled reason: #{disabled_message})"
-    rescue => e
-      unknown "Could not get disabled message. Reason: #{e.message}"
+    if File.exist?(config[:agent_disabled_file])
+      begin
+        disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
+        @message += " (disabled reason: #{disabled_message})"
+      rescue => e
+        unknown "Could not get disabled message. Reason: #{e.message}"
+      end
     end
 
     if @failures > 0
