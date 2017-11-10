@@ -8,12 +8,17 @@
 
 ## Functionality
 
-**check-puppet-last-run.rb**
+### check-puppet-last-run.rb
+Validates Puppet last run. Alerts if last Puppet run was later than threshold or it has errors
+
+### check-puppet-errors.rb
+Validates only Puppet run errors regardless of the execution time
 
 ## Files
 
 * /bin/checkpuppet-last-run.rb
 * /bin/metrics-puppet-run.rb
+* /bin/check-puppet-errors.rb
 
 ## Installation
 

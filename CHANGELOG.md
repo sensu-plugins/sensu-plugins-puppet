@@ -6,6 +6,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased]
 ### Added
 - Testing for Ruby 2.4.1
+- `check-puppet-errors.rb`: Added check for Puppet failures (@grem11n)
+- `check-puppet-last-run.rb`: Added option for ignoring Puppet failure (@grem11n)
 
 ## [1.2.0] - 2017-05-30
 ### Added
