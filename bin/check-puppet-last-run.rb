@@ -99,7 +99,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
                               0
                             end
       end
-    rescue
+    rescue StandardError
       unknown "Could not process #{config[:summary_file]}"
     end
 
@@ -109,7 +109,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       begin
         disabled_message = JSON.parse(File.read(config[:agent_disabled_file]))['disabled_message']
         @message += " (disabled reason: #{disabled_message})"
-      rescue => e
+      rescue StandardError => e
         unknown "Could not get disabled message. Reason: #{e.message}"
       end
     end
