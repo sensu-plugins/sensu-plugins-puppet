@@ -49,12 +49,12 @@ class PuppetRun < Sensu::Plugin::Metric::CLI::Graphite
     begin
       summary = YAML.load_file(config[:summary_file])
       # print common time
-      %w(resources time changes events).each do |i|
+      %w[resources time changes events].each do |i|
         summary[i].each do |key, value|
           output([config[:scheme], i, key].join('.'), value)
         end
       end
-    rescue
+    rescue StandardError
       unknown "Could not process #{config[:summary_file]}"
     end
 
