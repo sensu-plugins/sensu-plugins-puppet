@@ -1,14 +1,19 @@
 #Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [2.0.0] - 2018-01-31
 ### Security
 - updated `rubocop` dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@jaredledvina)
 
 ### Breaking Changes
 - in order to bring in new rubocop dependency we need to drop ruby 2.0 support as it is EOL and aligns with out support policy. (@jaredledvina)
+
+### Changed
+- updated changelog guidelines location (@majormoses)
 
 ## [1.3.0] - 2017-11-09
 ### Added
@@ -46,7 +51,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.3.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.3.0...2.0.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.0.0...1.1.0
