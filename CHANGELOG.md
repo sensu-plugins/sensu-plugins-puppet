@@ -1,9 +1,14 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [2.1.0] - 2018-02-16
+### Added
+- Added options to allow for different age limits when the agent is disabled
+- Added a switch to use the new limits so as not to impact current functionality
 
 ## [2.0.0] - 2018-01-31
 ### Security
@@ -20,11 +25,6 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 - Testing for Ruby 2.4.1
 - `check-puppet-errors.rb`: Added check for Puppet failures (@grem11n)
 - `check-puppet-last-run.rb`: Added option for ignoring Puppet failure (@grem11n)
-
-# [Unreleased]
-### Added
-- Added options to allow for different age limits when the agent is disabled
-- Added a switch to use the new limits so as not to impact current functionality
 
 ## [1.2.0] - 2017-05-30
 ### Added
@@ -56,7 +56,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.0...HEAD
+[2.1.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.3.0...2.0.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.2.0...1.3.0
 [1.2.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.1.0...1.2.0
