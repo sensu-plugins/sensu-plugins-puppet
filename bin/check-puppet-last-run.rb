@@ -100,6 +100,8 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     end
 
     @now = Time.now.to_i
+    @failures = 0
+    @restart_failures = 0
 
     begin
       summary = YAML.load_file(config[:summary_file])
