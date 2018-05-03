@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [2.1.1] - 2018-05-03
 ### Fixed
 - check-puppet-last-run.rb: fixed issue where `failures` and `restart_failures` were `nil` when `--ignore-failures` was passed by ensuring that they were defined as `0` so that they could be compared. (@bovy89)
 
@@ -59,7 +60,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.1...HEAD
+[2.1.1]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.3.0...2.0.0
 [1.3.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/1.2.0...1.3.0
