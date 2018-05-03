@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+### Fixed
+- check-puppet-last-run.rb: fixed issue where `failures` and `restart_failures` were `nil` when `--ignore-failures` was passed by ensuring that they were defined as `0` so that they could be compared. (@bovy89)
+
 ## [2.1.0] - 2018-02-16
 ### Added
 - Added options to allow for different age limits when the agent is disabled
