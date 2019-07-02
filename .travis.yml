@@ -4,8 +4,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -18,16 +16,23 @@ script:
 - bundle exec rake default
 - gem build sensu-plugins-puppet.gemspec
 - gem install sensu-plugins-puppet-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
-  provider: rubygems
+- provider: rubygems
   api_key:
     secure: i6RFvnFPoE21r7Cglk2vQ4KgZyP6hsG53YtdBmyXKofvHwL3nlIc+WCInLSOLOaJH8fbT+NAIcpQQehDwL0WQH9J0bp3Lkp4DoLxCcyNKrztkNcVkeo8kYp9TCqDRS6vBtdkASoykO0dxeEtfk2Wa9yC9yS24o4xHlB5vdKZB1NC3W5P6S151aiizyb3NDlYc+Rp/1Grd9BETDrJvglhh7OwbFbtrEo28FSTjaoUsim2vW+622pIJps7pCwDf5Zc/lID/s0VPrUo8+JmwE/fb8TToj9nd88KFRPTT1EEC3tkUQMb93NuTjiYV9OSAAtFTTS8EBqQwUcr4rO4ikdybqwDcoYZm2v2Z0tQv2vJVRfIdl7WWMNoaMFS6L1m0oxofMOX5uaBZ09ujoH7av9RkmQZxpizfYNT8gf8umpVnSVe0myyVr08EmqppBbOaG1aa388fT4fFM8DnqPRHa1LHJHwFhW4ab//a/fiFSCR1xeSMwDFH3Op7znEYkp9Il6QMZcMflJlVHowx+9zyHfZalKujFtXdX7XE6JOGjdrzP7RkQoRONLNpYAgSytk2PBY42EZS7NprW21IrrGD51SwoB/lf1c25uEVcZvsHtvni7KSBYVHHJ0iW/jA4tR4Q386x3puzmYVcJHFznYnnd15p4dBmFcFI59tirhEZWgKpE=
   gem: sensu-plugins-puppet
   on:
     tags: true
     all_branches: true
-    rvm: 2.1
-    rvm: 2.2
     rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-puppet
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-puppet
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
