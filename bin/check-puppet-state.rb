@@ -5,7 +5,7 @@
 # check-puppet-state
 #
 # DESCRIPTION:
-#   Check consecutive puppet runs for changes
+#   Check consecutive Puppet runs for changes
 #
 # OUTPUT:
 #   plain-text
@@ -17,14 +17,14 @@
 #   gem: sensu-plugin
 #
 # USAGE:
-#   Critical if number of changes for last 3 puppet runs is greater than
+#   Critical if number of changes for last 3 Puppet runs is greater than 2 in each run
 #
 #   check-puppet-state --summary-file /opt/puppetlabs/puppet/cache/state/last_run_summary.yaml --crit-changes 2
 #
 # NOTES:
 #
 # LICENSE:
-#   Copyright 2014 Sonian, Inc. and contributors. <support@sensuapp.org>
+#   Copyright 2019 SIC! Software GmbH and contributors. <info@sic.software>
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
