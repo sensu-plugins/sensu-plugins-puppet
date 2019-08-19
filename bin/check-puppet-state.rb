@@ -48,21 +48,24 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
          description: 'Path to agent disabled lock file'
 
   option :runs,
-         short:       '-r',
-         long:        '--runs',
+         short:       '-r RUNS',
+         long:        '--runs RUNS',
          default:     3,
+         proc:        proc(&:to_i),
          description: 'Consecutive runs to check'
 
   option :warning_changes,
-         short:       '-w',
-         long:        '--warn-changes',
+         short:       '-w WARN',
+         long:        '--warn-changes WARN',
          default:     0,
+         proc:        proc(&:to_i),
          description: 'Maximal changes allowed during runs for warning result'
 
   option :critical_changes,
-         short:       '-c',
-         long:        '--crit-changes',
+         short:       '-c CRIT',
+         long:        '--crit-changes CRIT',
          default:     0,
+         proc:        proc(&:to_i),
          description: 'Maximal changes allowed during runs for critical result'
 
   def run
