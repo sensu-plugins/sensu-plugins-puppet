@@ -1,6 +1,4 @@
 #! /usr/bin/env ruby
-# frozen_string_literal: true
-
 #
 # check-puppet-state
 #
@@ -33,7 +31,7 @@ require 'sensu-plugin/check/cli'
 require 'yaml'
 
 class PuppetLastRun < Sensu::Plugin::Check::CLI
-  DEFAULT_CACHE_FILE = '/tmp/sensu-plugins-puppet-cache.yml'
+  DEFAULT_CACHE_FILE = '/tmp/sensu-plugins-puppet-cache.yml'.freeze
 
   option :summary_file,
          short:       '-s PATH',
