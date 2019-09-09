@@ -27,6 +27,7 @@
 #   for details.
 #
 
+require 'sensu-plugins-puppet'
 require 'sensu-plugin/check/cli'
 require 'yaml'
 require 'json'
@@ -36,7 +37,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
   option :summary_file,
          short:       '-s PATH',
          long:        '--summary-file PATH',
-         default:     '/opt/puppetlabs/puppet/cache/state/last_run_summary.yaml',
+         default:     SensuPluginsPuppet::SUMMARY_FILE,
          description: 'Location of last_run_summary.yaml file'
 
   option :warn_age,
@@ -56,7 +57,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
   option :agent_disabled_file,
          short:       '-a PATH',
          long:        '--agent-disabled-file PATH',
-         default:     '/opt/puppetlabs/puppet/cache/state/agent_disabled.lock',
+         default:     SensuPluginsPuppet::AGENT_DISABLED_FILE,
          description: 'Path to agent disabled lock file'
 
   option :disabled_age_limits,

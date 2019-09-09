@@ -24,6 +24,7 @@
 #   for details.
 #
 
+require 'sensu-plugins-puppet'
 require 'sensu-plugin/metric/cli'
 require 'yaml'
 require 'socket'
@@ -32,7 +33,7 @@ class PuppetRun < Sensu::Plugin::Metric::CLI::Graphite
   option :summary_file,
          short:       '-p PATH',
          long:        '--summary-file PATH',
-         default:     '/opt/puppetlabs/puppet/cache/state/last_run_summary.yaml',
+         default:     SensuPluginsPuppet::SUMMARY_FILE,
          description: 'Location of last_run_summary.yaml file'
 
   option :scheme,
