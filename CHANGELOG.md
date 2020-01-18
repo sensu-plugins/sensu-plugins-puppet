@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Added
+- check-puppet-ca.rb: check if CA certificate is expired or will expire within in a given timeframe
 
 ## [2.2.0] - 2019-12-17
 ### Added

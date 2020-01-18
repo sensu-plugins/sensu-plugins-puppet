@@ -14,11 +14,15 @@ Validates Puppet last run. Alerts if last Puppet run was later than threshold or
 ### check-puppet-errors.rb
 Validates only Puppet run errors regardless of the execution time
 
+### check-puppet-ca.rb
+Validates if the CA certificate is not expired
+
 ## Files
 
 * /bin/checkpuppet-last-run.rb
 * /bin/metrics-puppet-run.rb
 * /bin/check-puppet-errors.rb
+* /bin/check-puppet-ca.rb
 
 ## Installation
 
