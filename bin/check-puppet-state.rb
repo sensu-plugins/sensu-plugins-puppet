@@ -109,7 +109,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
   end
 
   def cache
-    @cache ||= YAML.load_file(DEFAULT_CACHE_FILE)
+    @cache ||= YAML.load_file(DEFAULT_CACHE_FILE, {})
   rescue StandardError
     @cache ||= {}
   end
