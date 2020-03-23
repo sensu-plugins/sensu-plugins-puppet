@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # metrics-puppet-run
 #
@@ -31,9 +33,9 @@ require 'socket'
 
 class PuppetRun < Sensu::Plugin::Metric::CLI::Graphite
   option :summary_file,
-         short:       '-p PATH',
-         long:        '--summary-file PATH',
-         default:     SensuPluginsPuppet::SUMMARY_FILE,
+         short: '-p PATH',
+         long: '--summary-file PATH',
+         default: SensuPluginsPuppet::SUMMARY_FILE,
          description: 'Location of last_run_summary.yaml file'
 
   option :scheme,

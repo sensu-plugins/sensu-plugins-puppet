@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SensuPluginsPuppet
   module Version
     MAJOR = 2
