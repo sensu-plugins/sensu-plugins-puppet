@@ -5,8 +5,10 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-03-24
 ### Breaking Change
 - Removed Ruby 2.1 and 2.2
+- Updated sensu-plugin to '~> 4.0'
 
 ### Added
 - Bonsai asset build bits
@@ -14,7 +16,6 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Changed
 - Updated bundler to '~> 2.1'
 - Updated rubocop to '~> 0.80.1'
-- Updated sensu-plugin to '~> 4.0'
 - Remediated rubocop warnings
 
 ## [2.2.0] - 2019-12-17
@@ -76,7 +77,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.2.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.2.0...3.0.0
 [2.2.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.1...2.2.0
 [2.1.1]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.1.0...2.1.1
 [2.1.0]: https://github.com/sensu-plugins/sensu-plugins-puppet/compare/2.0.0...2.1.0
