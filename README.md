@@ -12,8 +12,37 @@
 ### check-puppet-last-run.rb
 Validates Puppet last run. Alerts if last Puppet run was later than threshold or it has errors
 
+```
+Usage: ./bin/check-puppet-last-run.rb (options)
+    -a, --agent-disabled-file PATH   Path to agent disabled lock file
+    -c, --crit-age SECONDS           Age in seconds to be a critical
+    -C, --crit-age-disabled SECONDS  Age in seconds to crit when agent is disabled
+    -d, --disabled-age-limits        Consider disabled age limits, otherwise use main limits
+    -i, --ignore-failures            Ignore Puppet failures
+    -r, --report-restart-failures    Raise alerts if restart failures have happened
+    -s, --summary-file PATH          Location of last_run_summary.yaml file
+    -w, --warn-age SECONDS           Age in seconds to be a warning
+    -W, --warn-age-disabled SECONDS  Age in seconds to warn when agent is disabled
+
+```
+
 ### check-puppet-errors.rb
 Validates only Puppet run errors regardless of the execution time
+
+```
+Usage: ./bin/check-puppet-errors.rb (options)
+    -a, --agent-disabled-file PATH   Path to agent disabled lock file
+    -s, --summary-file PATH          Location of last_run_summary.yaml file
+```
+
+### metrics-puppet-run.rb
+Provides metrics from Puppet last run in graphite format. 
+
+```
+Usage: ./bin/metrics-puppet-run.rb (options)
+    -s, --scheme SCHEME              Metric naming scheme
+    -p, --summary-file PATH          Location of last_run_summary.yaml file
+```
 
 ## Files
 
@@ -21,7 +50,18 @@ Validates only Puppet run errors regardless of the execution time
 * /bin/metrics-puppet-run.rb
 * /bin/check-puppet-errors.rb
 
-## Installation
+
+## Installation Options
+### Asset registration
+
+Assets are the best way to make use of this plugin in Sensu Go. If you're not using an asset, please consider doing so! If you're using sensuctl 5.13 or later, you can use the following command to add the latest version of this asset: 
+
+`sensuctl asset add sensu-plugins/sensu-plugins-puppet`
+
+If you're using an earlier version of sensuctl, you can download the asset definition from [this project's Bonsai Asset Index page](https://bonsai.sensu.io/assets/sensu-plugins/sensu-plugins-puupet).
+
+
+### Gem Installation
 
 [Installation and Setup](http://sensu-plugins.io/docs/installation_instructions.html)
 
