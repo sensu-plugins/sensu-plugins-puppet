@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 require 'sensu-plugins-puppet/version'
 
 module SensuPluginsPuppet

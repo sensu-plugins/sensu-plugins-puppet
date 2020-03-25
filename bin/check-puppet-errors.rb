@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # check-puppet-errors
 #
@@ -35,15 +37,15 @@ require 'time'
 
 class PuppetErrors < Sensu::Plugin::Check::CLI
   option :summary_file,
-         short:       '-s PATH',
-         long:        '--summary-file PATH',
-         default:     SensuPluginsPuppet::SUMMARY_FILE,
+         short: '-s PATH',
+         long: '--summary-file PATH',
+         default: SensuPluginsPuppet::SUMMARY_FILE,
          description: 'Location of last_run_summary.yaml file'
 
   option :agent_disabled_file,
-         short:       '-a PATH',
-         long:        '--agent-disabled-file PATH',
-         default:     SensuPluginsPuppet::AGENT_DISABLED_FILE,
+         short: '-a PATH',
+         long: '--agent-disabled-file PATH',
+         default: SensuPluginsPuppet::AGENT_DISABLED_FILE,
          description: 'Path to agent disabled lock file'
 
   def run
@@ -73,7 +75,7 @@ class PuppetErrors < Sensu::Plugin::Check::CLI
       end
     end
 
-    if @failures > 0
+    if @failures > 0 # rubocop:disable Style/NumericPredicate
       @message += " had #{@failures} failures"
       critical @message
     else

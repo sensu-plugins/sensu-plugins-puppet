@@ -5,6 +5,18 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+### Breaking Change
+- Removed Ruby 2.1 and 2.2
+
+### Added
+- Bonsai asset build bits
+
+### Changed
+- Updated bundler to '~> 2.1'
+- Updated rubocop to '~> 0.80.1'
+- Updated sensu-plugin to '~> 4.0'
+- Remediated rubocop warnings
+
 ## [2.2.0] - 2019-12-17
 ### Added
 - Adding support windows by default without overriding options by checking the platform and adjusting the paths automatically (@bodgit)

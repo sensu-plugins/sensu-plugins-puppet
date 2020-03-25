@@ -1,4 +1,6 @@
 #! /usr/bin/env ruby
+# frozen_string_literal: true
+
 #
 # check-puppet-last-run
 #
@@ -35,64 +37,64 @@ require 'time'
 
 class PuppetLastRun < Sensu::Plugin::Check::CLI
   option :summary_file,
-         short:       '-s PATH',
-         long:        '--summary-file PATH',
-         default:     SensuPluginsPuppet::SUMMARY_FILE,
+         short: '-s PATH',
+         long: '--summary-file PATH',
+         default: SensuPluginsPuppet::SUMMARY_FILE,
          description: 'Location of last_run_summary.yaml file'
 
   option :warn_age,
-         short:       '-w N',
-         long:        '--warn-age SECONDS',
-         default:     3600,
-         proc:        proc(&:to_i),
+         short: '-w N',
+         long: '--warn-age SECONDS',
+         default: 3600,
+         proc: proc(&:to_i),
          description: 'Age in seconds to be a warning'
 
   option :crit_age,
-         short:       '-c N',
-         long:        '--crit-age SECONDS',
-         default:     7200,
-         proc:        proc(&:to_i),
+         short: '-c N',
+         long: '--crit-age SECONDS',
+         default: 7200,
+         proc: proc(&:to_i),
          description: 'Age in seconds to be a critical'
 
   option :agent_disabled_file,
-         short:       '-a PATH',
-         long:        '--agent-disabled-file PATH',
-         default:     SensuPluginsPuppet::AGENT_DISABLED_FILE,
+         short: '-a PATH',
+         long: '--agent-disabled-file PATH',
+         default: SensuPluginsPuppet::AGENT_DISABLED_FILE,
          description: 'Path to agent disabled lock file'
 
   option :disabled_age_limits,
-         short:       '-d',
-         long:        '--disabled-age-limits',
-         boolean:     true,
-         default:     false,
+         short: '-d',
+         long: '--disabled-age-limits',
+         boolean: true,
+         default: false,
          description: 'Consider disabled age limits, otherwise use main limits'
 
   option :warn_age_disabled,
-         short:       '-W N',
-         long:        '--warn-age-disabled SECONDS',
-         default:     3600,
-         proc:        proc(&:to_i),
+         short: '-W N',
+         long: '--warn-age-disabled SECONDS',
+         default: 3600,
+         proc: proc(&:to_i),
          description: 'Age in seconds to warn when agent is disabled'
 
   option :crit_age_disabled,
-         short:       '-C N',
-         long:        '--crit-age-disabled SECONDS',
-         default:     7200,
-         proc:        proc(&:to_i),
+         short: '-C N',
+         long: '--crit-age-disabled SECONDS',
+         default: 7200,
+         proc: proc(&:to_i),
          description: 'Age in seconds to crit when agent is disabled'
 
   option :report_restart_failures,
-         short:       '-r',
-         long:        '--report-restart-failures',
-         boolean:     true,
-         default:     false,
+         short: '-r',
+         long: '--report-restart-failures',
+         boolean: true,
+         default: false,
          description: 'Raise alerts if restart failures have happened'
 
   option :ignore_failures,
-         short:       '-i',
-         long:        '--ignore-failures',
-         boolean:     true,
-         default:     false,
+         short: '-i',
+         long: '--ignore-failures',
+         boolean: true,
+         default: false,
          description: 'Ignore Puppet failures'
 
   def run
@@ -138,11 +140,11 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       end
     end
 
-    if @failures > 0
+    if @failures > 0 # rubocop:disable Style/NumericPredicate
       @message += " with #{@failures} failures"
     end
 
-    if @restart_failures > 0
+    if @restart_failures > 0 # rubocop:disable Style/NumericPredicate
       @message += " with #{@restart_failures} restart failures"
     end
 
@@ -156,7 +158,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
       end
     end
 
-    if @now - @last_run > config[:crit_age] || @failures > 0 || @restart_failures > 0
+    if @now - @last_run > config[:crit_age] || @failures > 0 || @restart_failures > 0 # rubocop:disable Style/NumericPredicate
       critical @message
     elsif @now - @last_run > config[:warn_age]
       warning @message
@@ -170,7 +172,7 @@ class PuppetLastRun < Sensu::Plugin::Check::CLI
     minutes = (total_seconds / 60) % 60
     seconds = total_seconds % 60
 
-    if hours <= 0 && minutes > 0
+    if hours <= 0 && minutes > 0 # rubocop:disable Style/NumericPredicate
       "#{minutes}m #{seconds}s"
     elsif minutes <= 0
       "#{seconds}s"
