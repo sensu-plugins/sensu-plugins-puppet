@@ -74,11 +74,11 @@ class PuppetErrors < Sensu::Plugin::Check::CLI
     end
 
     begin
-      File.foreach(config[:report_file]).take(13).each { |line| 
-        if line.chomp.eql? 'status: failed'
+      %["sudo /usr/bin/head -n 13 #{config[:report_file]}"].split('\n').each { |line| 
+        if line.eql? 'status: failed'
           critical 'Last Puppet run reports status: failed'
         end
-        if line.chomp.eql? 'transaction_completed: false'
+        if line.eql? 'transaction_completed: false'
           critical 'Last Puppet run reports transaction_completed: false'
         end
       }
