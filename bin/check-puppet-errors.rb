@@ -47,10 +47,19 @@ class PuppetErrors < Sensu::Plugin::Check::CLI
          long: '--agent-disabled-file PATH',
          default: SensuPluginsPuppet::AGENT_DISABLED_FILE,
          description: 'Path to agent disabled lock file'
-
+         
+  option :report_file,
+         short: '-r PATH',
+         long: '--report-file PATH',
+         default: SensuPluginsPuppet::REPORT_FILE,
+         description: 'Location of last_run_report.yaml file'
+  
   def run
     unless File.exist?(config[:summary_file])
       unknown "File #{config[:summary_file]} not found"
+    end
+    unless File.exist?(config[:report_file])
+      unknown "File #{config[:report_file]} not found"
     end
 
     begin
@@ -62,6 +71,19 @@ class PuppetErrors < Sensu::Plugin::Check::CLI
       end
     rescue StandardError
       unknown "Could not process #{config[:summary_file]}"
+    end
+
+    begin
+      %["sudo /usr/bin/head -n 13 #{config[:report_file]}"].split('\n').each { |line| 
+        if line.eql? 'status: failed'
+          critical 'Last Puppet run reports status: failed'
+        end
+        if line.eql? 'transaction_completed: false'
+          critical 'Last Puppet run reports transaction_completed: false'
+        end
+      }
+    rescue StandardError
+      unknown "Could not process #{config[:report_file]}"
     end
 
     @message = 'Puppet run'
