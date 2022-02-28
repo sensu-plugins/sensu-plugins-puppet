@@ -26,6 +26,23 @@ Usage: ./bin/check-puppet-last-run.rb (options)
 
 ```
 
+### check-puppet-last-run-report.rb
+Validates Puppet last run report. Alerts if last Puppet run was later than threshold or it has errors
+
+```
+Usage: ./bin/check-puppet-last-run-report.rb (options)
+    -a, --agent-disabled-file PATH   Path to agent disabled lock file
+    -c, --crit-age SECONDS           Age in seconds to be a critical
+    -C, --crit-age-disabled SECONDS  Age in seconds to crit when agent is disabled
+    -d, --disabled-age-limits        Consider disabled age limits, otherwise use main limits
+    -i, --ignore-failures            Ignore Puppet failures
+    -r, --report-restart-failures    Raise alerts if restart failures have happened
+    -f, --report-file PATH           Location of last_run_report.yaml file
+    -w, --warn-age SECONDS           Age in seconds to be a warning
+    -W, --warn-age-disabled SECONDS  Age in seconds to warn when agent is disabled
+
+```
+
 ### check-puppet-errors.rb
 Validates only Puppet run errors regardless of the execution time
 
